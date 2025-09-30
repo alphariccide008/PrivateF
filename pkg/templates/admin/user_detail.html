@@ -1,0 +1,66 @@
+{% extends "admin/adminlayout.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="bg-white p-5 rounded shadow">
+        <h3 class="text-center mb-4"><b>Applicant Full Details</b></h3>
+
+        <h5 class="mb-3">Personal Info</h5>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><b>Full Name:</b> {{ user.fullname }}</li>
+            <li class="list-group-item"><b>Age:</b> {{ user.age }}</li>
+            <li class="list-group-item"><b>Level:</b> {{ user.level }} Level</li>
+            <li class="list-group-item"><b>School:</b> {{ user.school }}</li>
+            <li class="list-group-item"><b>Phone:</b> {{ user.phone }}</li>
+            <li class="list-group-item"><b>Email:</b> {{ user.email }}</li>
+            <li class="list-group-item"><b>Guardian:</b> {{ user.guardian }}</li>
+            <li class="list-group-item"><b>Occupation:</b> {{ user.occupation }}</li>
+        </ul>
+
+                    {% if information %}
+    <h5 class="mb-3">Submitted Information</h5>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Financial Background:</b> {{ information.financial }}</li>
+        <li class="list-group-item"><b>Intelligence:</b> {{ information.intelligence }}</li>
+        <li class="list-group-item"><b>Grit:</b> {{ information.grit }}</li>
+        <li class="list-group-item"><b>Growth:</b> {{ information.growth }}</li>
+        <li class="list-group-item"><b>Giving Back:</b> {{ information.giving_back }}</li>
+
+        <li class="list-group-item"><b>WAEC Result:</b><br>
+            {% if information.waec_file %}
+                <img src="/static/upload/{{ information.waec_file }}" alt="WAEC Result" class="img-fluid" style="max-width: 200px;"><br>
+                <a href="/static/upload/{{ information.waec_file}}" download class="btn btn-primary btn-sm mt-2">Download WAEC Result</a>
+            {% else %}
+                <span class="text-muted">No file uploaded</span>
+            {% endif %}
+        </li>
+
+        <li class="list-group-item"><b>JAMB Result:</b><br>
+            
+            {% if information.jamb_file %}
+                <img src="/static/upload/{{ information.jamb_file }}" alt="WAEC Result" class="img-fluid" style="max-width: 200px;"><br>
+                <a href="/static/upload/{{ information.jamb_file}}" download class="btn btn-primary btn-sm mt-2">Download JAMB Result</a>
+
+            {% else %}
+                <span class="text-muted">No file uploaded</span>
+            {% endif %}
+        
+        
+    </ul>
+{% endif %}
+      {% if user.approved == "approved" %}
+        <div>
+            <span class="p-2 bg-success text-white"> This Applicant has been approved</span>
+        </div>
+{% else %}
+    <div class="mt-4">
+        <a href="{{ url_for('approve_user', user_id=user.id) }}" class="btn text-white bg-success text-sm">Approve Applicant</a>
+    </div>
+{% endif %}
+
+
+        <div class="mt-4">
+            <a href="{{ url_for('all_users') }}" class="btn btn-secondary">Back to Users</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

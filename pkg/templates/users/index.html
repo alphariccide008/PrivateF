@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>MoniePoint</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     
+     <style type="text/css">
+        /* div{
+            border: 1px solid red;
+            min-height: 100px;
+        } */
+  /* ===== Vertical Scroll (Desktop) ===== */
+    .scroll-vertical {
+      animation: scroll-up 18s linear infinite;
+    }
+    .scroll-vertical:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scroll-up {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    /* ===== Horizontal Scroll (Mobile) ===== */
+    .scroll-horizontal {
+      animation: scroll-left 18s linear infinite;
+      display: flex;
+      width: max-content;
+    }
+    .scroll-horizontal:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Apply grayscale to all */
+    /* .scroll-item {
+      filter: grayscale(100%);
+      transition: filter 0.3s ease-in-out;
+    } */
+
+
+     </style>
+</head>
+
+<body class="bg-[#031335]" >
+    <!-- Navbar  -->
+   <nav class="fixed top-0 left-0 w-full md:px-[13%] z-50 bg-[#021138] px-6 py-4 flex items-center justify-between shadow-md">
+    
+    <!-- Logo -->
+    <div class="flex items-center">
+      <a href="{{ url_for('home')}}">
+        <img src="/static/img/logo.png" alt="Foundation Logo" class="md:h-10 h-9">
+      </a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="text-white  hover:text-gray-300 transition">About</a>
+      <a href="#benefits" class="text-white hover:text-gray-300 transition">Benefits</a>
+      <a href="#eligibility" class="text-white hover:text-gray-300 transition">Eligibility</a>
+      <a href="#faqs" class="text-white hover:text-gray-300 transition">FAQs</a>
+      <a href="#apply" class="bg-white  text-black px-5 py-2 rounded-full flex items-center gap-2 font-medium shadow hover:scale-105 transition">
+        Apply Now 
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden bg-[#ffffff] rounded-full p-2">
+      <button id="menu-btn" class="text-[#031335] text-2xl">☰</button>
+    </div>
+
+     <div id="mobile-menu" class="hidden absolute top-[92%] right-4 bg-white rounded-2xl shadow-lg w-[53%]  p-6 md:hidden flex-col gap-4">
+   
+    <ul class="text-center leading-[200%]">
+        <li>
+            <a href="#about" class="text-black text-lg hover:text-gray-600 transition">About</a>
+        </li>
+        <li>
+            <a href="#benefits" class="text-black text-lg hover:text-gray-600 transition">Benefis</a>
+        </li>
+        <li>
+            <a href="#eligibility" class="text-black text-lg hover:text-gray-600 transition">Eligibilitiy</a>
+        </li>
+        <li>
+            <a href="#faqs" class="text-black text-lg hover:text-gray-600 transition">FAQS</a>
+        </li>
+
+    </ul>
+  </div>
+   <a href="#apply" class="bg-gray-100 block md:hidden px-5 py-2 rounded-full flex items-center justify-between text-[#031335] font-medium">
+      Apply Now <span>→</span>
+    </a>
+  </nav>
+
+  <!-- Mobile Dropdown -->
+ 
+
+
+
+       <!-- first Hero Section -->
+<section class="relative w-full  md:mx-auto md:px-6  py-10 grid md:grid-cols-2 gap-12 items-center md:pb-[5%]">
+
+  <!-- LEFT CONTENT WITH VECTOR ON LEFT -->
+  <div class="relative overflow-hidden h-[700px] bg-[#031335] p-10 rounded-lg z-10">
+
+    <!-- Left Vector (Mirrored like reference image) -->
+   <img src="/static/img/Vectorother.png" 
+         class="absolute inset-y-0 left-0 w-[80%] h-full bottom-6 object-cover opacity-90 pointer-events-none" 
+         alt="">
+
+    <!-- Main Content -->
+    <div class="relative md:pt-[20%] z-10 md:ml-[18%] pb-[3%]">
+      <span class="inline-flex mt-8 items-center gap-2 bg-gray-700 text-sm text-gray-200 md:px-4 py-1.5 rounded-full mb-6 ">
+        ⏰ Applications close 30th September 2025
+      </span>
+
+      <h1 class="md:text-[52px] text-[42px] text-white font-bold leading-tight mb-4">
+        Future Builders <span class="text-[#FFF0C2]">STEM</span> Scholarship
+      </h1>
+
+      <p class="text-gray-300 text-lg mb-8">
+        Building tomorrow by investing in today’s brightest minds.
+      </p>
+
+      <div class="flex gap-4">
+        <a href="#" class="bg-white text-[#0a1639] text-[12px]  md:text-sm px-6 py-3 rounded-full shadow-md hover:shadow-lg transition inline-flex items-center gap-2">
+          Learn more
+        </a>
+        <a href="#apply" class="bg-transparent border border-white text-white text-sm px-6 py-3 rounded-full hover:bg-white hover:text-[#0a1639] transition inline-flex items-center gap-2">
+          Apply Now →
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SLIDER SECTION -->
+  <div class="relative w-full bg-[#031335] overflow-hidden flex justify-start items-start">
+
+    <!-- Desktop Vector on Right -->
+    <img src="/static/img/Vector.png" 
+         class="absolute inset-y-0 right-0 w-[80%] h-full bottom-6 object-cover opacity-90 pointer-events-none" 
+         alt="">
+
+    <!-- Mobile Horizontal Carousel -->
+    <div class="block md:hidden relative h-40 overflow-hidden rounded-lg shadow-lg z-10">
+      <div class="scroll-horizontal gap-3 flex">
+        <img src="/static/img/slider1.png" class="scroll-item w-40 h-40 object-cover">
+        <img src="/static/img/slider2.png" class="scroll-item w-40 h-40 object-cover">
+        <img src="/static/img/slider3.png" class="scroll-item w-40 h-40 object-cover">
+        <img src="/static/img/slider1.png" class="scroll-item w-40 h-40 object-cover">
+      </div>
+    </div>
+
+    <!-- Desktop Vertical Carousel -->
+    <div class="hidden overflow-hidden h-[40%] md:block w-[400px] relative z-10 p-6">
+      <div class="scroll-vertical h-[600px] space-y-4">
+        <img src="/static/img/slider1.png" class="w-full h-[342.3999938964844px] w-[400px] rounded-2xl">
+        <img src="/static/img/slider2.png" class="w-full h-[342.3999938964844px] w-[400px] rounded-2xl">
+        <img src="/static/img/slider2.png" class="w-full h-[342.3999938964844px] w-[400px] rounded-2xl">
+        
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+    <!-- scholarship section -->
+<section id="about" class=" bg-white rounded-[4%]  md:pt-[7%] md:rounded-[7%]" >
+         <section class="max-w-6xl rounded-lg bg- mx-auto px-6 py-16">
+  <!-- Title -->
+  <h2 class="text-2xl md:text-[32px] font-semibold mb-14">
+    About the <span class="text-blue-600">Scholarship</span>.
+  </h2>
+
+  <!-- Image -->
+  <div class="mb-8">
+    <img 
+      src="/static/img/schlarship.png" 
+      alt="About Scholarship" 
+      class="w-full rounded-2xl shadow-md"
+    />
+  </div>
+
+  <!-- Card -->
+  <div class="bg-gray-100 text-[16px] inter p-6 md:p-8 rounded-2xl shadow-sm">
+    <p class="text-gray-700 mb-4">
+      The Tosin Eniolorunda Foundation is a visionary initiative established by Tosin, CEO of Moniepoint.
+    </p>
+    <p class="text-gray-700">
+      Through its strategic initiatives, the 
+      <a href="#" class="text-[#0357EE] font-medium hover:underline">Tosin Eniolorunda Foundation</a> 
+      is committed to shaping a future where young people, both STEM enthusiasts and young entrepreneurs, 
+      have the tools and encouragement they need to thrive in their respective fields.
+    </p>
+  </div>
+</section>
+
+
+     <!-- About Section -->
+   <section class="mt-[5%] px-5 max-w-6xl mx-auto">
+  <div>
+    <h2 class="text-3xl md:text-4xl font-semibold font-style mb-4">
+      About the <br><span class="text-blue-600">Future Builders Fund.</span>
+    </h2>
+
+    <!-- Subtitle -->
+    <p class="text-gray-600 mb-8 max-w-3xl">
+      The Future Builders Fund is a pilot scholarship that supports 14 top STEM students across seven Nigerian universities:
+    </p>
+
+    <!-- Universities Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card -->
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">Obafemi Awolowo University</span>
+        </div>
+        <img src="/static/img/awolowo.png" alt="Obafemi Awolowo University" class="h-10 w-auto">
+      </div>
+
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">University of Abuja</span>
+        </div>
+        <img src="/static/img/abuja.png" alt="University of Abuja" class="h-10 w-auto">
+      </div>
+
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">University of Nigeria, Nsukka</span>
+        </div>
+        <img src="/static/img/nsukka.png" alt="University of Nigeria, Nsukka" class="h-10 w-auto">
+      </div>
+
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">University of Lagos</span>
+        </div>
+        <img src="/static/img/unilag.png" alt="University of Lagos" class="h-10 w-auto">
+      </div>
+
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">University of Maiduguri</span>
+        </div>
+        <img src="/static/img/maidugiri.png" alt="University of Maiduguri" class="h-10 w-auto">
+      </div>
+
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">Ahmadu Bello University, Zaria</span>
+        </div>
+        <img src="/static/img/zaria.png" alt="Ahmadu Bello University, Zaria" class="h-10 w-auto">
+      </div>
+
+      <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl shadow-sm">
+        <div class="flex items-center">
+          <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+          <span class="text-gray-800 font-medium">University of Calabar</span>
+        </div>
+        <img src="/static/img/calabar.png" alt="University of Calabar" class="h-10 w-auto">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- future builders section -->
+   <section class="relative w-full max-w-7xl mx-auto mt-10 p-10 md:p-16 bg-[#011336] rounded-[2rem] overflow-hidden text-center">
+
+  <!-- Left Vector (Mirrored) -->
+  <img src="/static/img/Vector.png" 
+       class="absolute inset-y-0 left-0 w-1/2 h-full object-cover z-0 opacity-90 scale-x-[-1] pointer-events-none" 
+       alt="Background Vector Left">
+
+  <!-- Right Vector -->
+  <img src="/static/img/Vector.png" 
+       class="absolute inset-y-0 right-0 w-1/2 h-full object-cover z-0 opacity-90 pointer-events-none" 
+       alt="Background Vector Right">
+
+  <!-- Content -->
+  <div class="relative z-10 text-white max-w-3xl mx-auto">
+    <h2 class="text-xl text-start md:text-center md:text-3xl lg:text-4xl font-semibold leading-relaxed">
+      The Future Builders Fund is a first step in a long-term commitment to building the future by investing in those ready to shape it.
+    </h2>
+
+    <div class="mt-8 flex md:justify-center">
+      <a href="#apply" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-900 font-medium rounded-full shadow-md hover:bg-gray-100 transition">
+        Apply Now
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+
+
+ <section class="bg-[#F8F8F8]" id="benefits">
+     <div class="max-w-6xl mt-[5%] mx-auto px-6 py-16">
+    <!-- Header -->
+    <div class="md:flex justify-between items-center mb-10">
+      <h2 class="text-3xl pb-4 font-semibold text-gray-900">
+        What the <span class="text-blue-600">Fund</span> Covers.
+      </h2>
+      <a href="#apply"
+         class="inline-flex items-center gap-2 bg-[#020b33] text-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition">
+        Apply Now 
+        <span class="text-lg">→</span>
+      </a>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="bg-white rounded-2xl shadow-sm p-6">
+        <h3 class="font-semibold text-gray-900 border-l-2 border-blue-600 pl-3 mb-3">
+          Full tuition & fees
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Focus fully on your studies without worrying about financial burdens. 
+          We’ll take care of your tuition and mandatory school fees.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-2xl shadow-sm p-6">
+        <h3 class="font-semibold text-gray-900 border-l-2 border-blue-600 pl-3 mb-3">
+          Hostel accommodation
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Live and learn in a safe, convenient environment. Your accommodation is 
+          covered so you can stay close to campus and focus on your growth.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-2xl shadow-sm p-6">
+        <h3 class="font-semibold text-gray-900 border-l-2 border-blue-600 pl-3 mb-3">
+          Mentorship & check-ins
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Beyond funding, you’ll receive guidance from experienced mentors who’ll 
+          support your academic journey and help you build real-world skills.
+        </p>
+      </div>
+    </div>
+  </div>
+
+ </section>
+
+
+ <!-- Eligibility Section -->
+  <section class=" bg-[#031335] inter text-[#ffffff]" id="eligibility">
+    <div class="max-w-6xl mt-[5%]  mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+    <!-- Left Content -->
+    <div>
+      <h2 class="text-4xl font-semibold mb-4">
+        Eligibility <span class="text-[#FFF0C2]">Criteria.</span>
+      </h2>
+      <p class="text-gray-300 mb-8">
+        Applicants must meet the following criteria to be considered for the scholarship.
+      </p>
+      <a href="#apply"
+         class="inline-flex items-center gap-2 bg-white text-[#0a1639] px-6 py-3 rounded-full font-medium shadow-md hover:shadow-lg transition">
+        Apply Now 
+        <span class="text-lg">→</span>
+      </a>
+    </div>
+
+    <!-- Right Criteria List -->
+    <div class="space-y-4 text-[16px] ">
+      
+      <div class="flex items-center bg-[#13214e] justify-between  p-4 rounded-xl shadow-sm">
+                <div class="flex items-center">
+                <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+                <span class="">You study STEM at one of these Nigerian universities: OAU, UNIABUJA, UNN, ABU Zaria, UNIMIAD, UNILAG or UNICAL</span>
+                </div>
+               
+        </div>
+        <div class="flex items-center bg-[#13214e] justify-between  p-4 rounded-xl shadow-sm">
+                <div class="flex items-center">
+                <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+                <span class="">You’re in 200 level</span>
+                </div>
+                
+        </div>
+        <div class="flex items-center bg-[#13214e] justify-between  p-4 rounded-xl shadow-sm">
+                <div class="flex items-center">
+                <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+                <span class="">You have a Second Class Upper (2:1) or First Class standing</span>
+                </div>
+                
+        </div>
+        <div class="flex items-center bg-[#13214e] justify-between  p-4 rounded-xl shadow-sm">
+                <div class="flex items-center">
+                <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+                <span class="">You’re 25 years or younger</span>
+                </div>
+                
+        </div>
+        <div class="flex items-center bg-[#13214e] justify-between  p-4 rounded-xl shadow-sm">
+                <div class="flex items-center">
+                <div class="w-1 h-8 bg-blue-500 rounded mr-3"></div>
+                <span class="">You show financial need and a mindset that’s about solving problems inside and outside the classroom</span>
+                </div>
+                
+        </div>
+    </div>
+  </div>
+  </section>
+
+
+
+  <!-- FAQ SECTION -->
+<section class="max-w-4xl mx-auto px-6 py-16" id="faqs">
+    <!-- Header -->
+    <h2 class="text-4xl font-bold text-center text-gray-900 mb-10">FAQs</h2>
+
+    <!-- FAQ Container -->
+    <div class="space-y-4">
+      <!-- Item 1 -->
+     
+
+      <!-- Item 2 -->
+      <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          Who is eligible to apply for the scholarship?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+          
+          The scholarship is open to students enrolled in our four partner schools (OAU, UniMaid, UNN, Unilag, Uniabuja, ABU Zaria, Unical) who demonstrate strong academic performance and a problem solving mindset
+
+        </div>
+      </div>
+
+       <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          How many students will be selected?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+           A total of 14 students (2 from each school) will be chosen for the scholarship.
+        </div>
+      </div>
+
+       <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          What does the scholarship cover?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+          The award includes full tuition fees, monthly stipends, hostel accommodation, and ongoing mentorship and check-ins from the Foundation.
+        </div>
+      </div>
+
+       <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          Is the scholarship renewable?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+           Yes. The scholarship is renewable each academic year, provided the student maintains good academic standing and demonstrates growth beyond their curriculum (e.g., participation in projects, competitions, or innovation initiatives).
+        </div>
+      </div>
+
+       <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          What is the selection process?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+          ●	Step 1: Applications are reviewed, and the top 10 candidates per school are shortlisted. <br>
+
+          ●	Step 2: Shortlisted students will sit for a standardized test. <br>
+
+          ●	Step 3: The top 2 students per school will be selected based on test results.
+
+        </div>
+      </div>
+
+       <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          How will I know if I have been shortlisted?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+           Shortlisted students will be contacted directly via email/phone and through their school administrators.
+        </div>
+      </div>
+
+       <div class="faq-item bg-gray-50 rounded-2xl p-5 shadow-sm">
+        <button class="faq-question w-full flex justify-between items-center text-gray-800 font-medium">
+          Can I reapply if I don’t get selected?
+          <span class="icon text-blue-600 text-xl">+</span>
+        </button>
+        <div class="faq-answer hidden mt-2 text-gray-600 text-sm leading-relaxed">
+            Yes. Students who are not selected in this cycle may be eligible to apply again in future years if they still meet the requirements.
+        </div>
+      </div>
+
+      
+
+      <!-- Item 3 -->
+      
+        </div>
+      </div>
+    </div>
+</section>
+
+</div>
+
+<section class="bg-[#0a1639] text-14px inter min-h-screen relative overflow-hidden flex items-center justify-center">
+
+  <!-- LEFT VECTOR -->
+  <img src="/static/img/Vectorother.png" 
+       class="absolute left-[-1%] botton-0 w-[50%] h-full object-cover z-0 opacity-70 pointer-events-none" 
+       alt="Left Background Vector">
+
+  <!-- RIGHT VECTOR -->
+  <img src="/static/img/Vector.png" 
+       class="absolute right-0 top-0 w-[50%] h-full object-cover z-0 opacity-70 pointer-events-none" 
+       alt="Right Background Vector">
+
+  <div class="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6 py-12 relative z-10">
+    
+    <!-- LEFT SIDE -->
+    <div class="text-white space-y-6">
+      <span class="bg-gray-800 text-sm px-4 py-2 rounded-full inline-block">
+        ⏳ Applications close 30th September 2025
+      </span>
+      <h1 class="text-5xl font-bold leading-tight">
+        Ready to Build <br/>
+        <span class="text-yellow-200">The Future?</span>
+      </h1>
+      <p class="text-lg text-gray-300">
+        Answer the questions to start your journey.
+      </p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="md:mt-[15%] md:px-[18%] text-[14px]" id="apply">
+      <form id="multiStepForm" method="post" enctype="multipart/form-data" action="/form" class="bg-white rounded-2xl text-sm shadow-lg w-full max-w-lg p-6 space-y-6"> <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> 
+        <!-- Progress Bar --> 
+         <div class="flex justify-between mb-4"> 
+          <div class="h-1 flex-1 bg-gray-200 mx-1 rounded-full"> 
+            <div id="progress" class="h-1 bg-blue-500 rounded-full w-1/2"></div> </div> </div> <!-- Step 1 --> <div class="step"> <h2 class="text-xl font-bold mb-2">Personal & School Info</h2> <p class="text-gray-500 mb-4">We just need the basics about you:</p> 
+              <input type="text" name="fullname" placeholder="Full name" class="input-field md:text-[10px] w-full p-3 border rounded-lg mb-3">
+              <input type="text" name="email" placeholder="Email" class="input-field md:text-[10px] w-full p-3 border rounded-lg mb-3">
+               <div class="grid grid-cols-2 mb-2 gap-3"> <input type="number" name="age" placeholder="Age" class="input-field md:text-[10px] w-full p-3 border rounded-lg"> 
+                <select name="school" class="input-field mb-2 md:text-[10px] w-full p-3 border rounded-lg">    
+              <option value="" >Select school</option> 
+              <option value="Obafemi Awolowo university">Obafemi Awolowo university</option> 
+              <option value="University of Lagos">University of Lagos</option>
+              <option value="University of Calabar">University of Calabar</option>
+              <option value="University of Abuja">University of Abuja</option>
+              <option value="University of maiduguri">University of maiduguri</option>
+              <option value="University of Nigeria">University of Nigeria</option>
+              <option value="Ahmadu Bello University">Ahmadu Bello University , Zaria</option>
+              </select>
+            </div> 
+           
+            <input type="tel" name="phone" placeholder="Phone number" class="input-field w-full p-3 border md:text-[10px]  rounded-lg mb-3"> <input type="text" name="guardian" placeholder="Guardian/Parent’s name" class="input-field text-[10px] w-full p-3 border rounded-lg mb-3"> <input type="text" name="occupation" placeholder="Guardian/Parent’s Occupation" class="input-field  md:text-[10px] w-full p-3 border rounded-lg mb-3"> <div class="flex mt-3"> <label class="block mb-3 w-1/2">WAEC Results </label> <input type="file" name="waec" class="mt-1 md:text-[10px] w-full"> </div> <div class="flex mt-3"> <label class="block  mb-3 w-1/2">JAMB Results</label> <input type="file" name="jamb" class="mt-1 w-full md:text-[10px]"> </div> </div> <!-- Step 2 --> <div class="step hidden"> <h2 class="text-xl font-bold mb-2">Financial Background</h2> <p class="text-gray-500 mb-4">Be real with us about the money side...</p> <textarea name="financial" rows="4" placeholder="Share your main challenge." class="input-field w-full p-3 border rounded-lg"></textarea> </div> <!-- Step 3 --> <div class="step hidden"> <h2 class="text-xl font-bold mb-2">Intelligence & Capability</h2> <p class="text-gray-500 mb-4">Tell us about something tough you figured out on your own.</p> <textarea name="intelligence" rows="4" placeholder="Share a skill or subject you figured out solo." class="input-field w-full p-3 border rounded-lg"></textarea> </div> <!-- Step 4 --> <div class="step hidden"> <h2 class="text-xl font-bold mb-2">Grit & Resilience</h2> <p class="text-gray-500 mb-4">What’s the hardest thing you kept doing over time?</p> <textarea name="grit" rows="4" placeholder="Share a habit you stuck with." class="input-field w-full p-3 border rounded-lg"></textarea> </div> <!-- Step 5 --> <div class="step hidden"> <h2 class="text-xl font-bold mb-2">Growth Mindset</h2> <p class="text-gray-500 mb-4">Think about the last year. What skill did you get better at?</p> <textarea name="growth" rows="4" placeholder="Share a skill you’ve improved." class="input-field w-full p-3 border rounded-lg"></textarea> </div> <div class="step hidden"> <h2 class="text-xl font-bold mb-2">Giving Back</h2> <p class="text-gray-500 mb-4">If this scholarship helps you reach your goals, how would you use it to give back or support others? </p> <p class="text-gray-500 mb-4">And finally, what would receiving this scholarship mean for your future?</p> <textarea name="giving" rows="4" placeholder="E.g., mentor others, support family, build community projects… and share what this scholarship would change for you." class="input-field w-full p-3 border rounded-lg"></textarea> </div> <!-- Step 6 (Final Success) --> <div class="step hidden text-center" id="successStep"> <div class="flex justify-center mb-4"> <span class="text-blue-600 text-5xl"><img src="/static/img/submit.png" alt=""></span> </div> <h2 class="text-xl font-bold mb-2">Application Submitted!</h2> <p class="text-gray-500">Thank you for applying to the Future Builders STEM Scholarship.</p> <p class="text-gray-500 mb-4">Stay tuned — and keep building the future.</p> <div class="bg-gray-100 p-3 rounded-lg"> Final awardees will be announced after the deadline (30th September 2025) </div> </div> <!-- Navigation Buttons --> <div class="flex justify-between"> <button type="button" id="prevBtn" class="hidden px-4 py-2 rounded-lg bg-gray-100">Back</button> <button type="submit" id="nextBtn" class="px-4 py-2 justify-end rounded-full bg-[#0a1639] text-white">Next</button> </div> </form>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<button id="scrollTopBtn"
+        aria-label="Scroll to top"
+        class="fixed bottom-6 right-6 bg- text-white px-4 py-2 rounded-full shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+  ↑ Top
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+            const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      menuBtn.textContent = mobileMenu.classList.contains("hidden") ? "☰" : "✕";
+    });
+
+
+
+        // form
+      
+const steps = document.querySelectorAll(".step");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const progress = document.getElementById("progress");
+let currentStep = 0;
+
+function showStep(index) {
+  steps.forEach((step, i) => {
+    step.classList.toggle("hidden", i !== index);
+  });
+
+  prevBtn.classList.toggle("hidden", index === 0);
+
+  if (index === steps.length - 2) {
+    nextBtn.textContent = "Submit Application";
+    nextBtn.type = "button"; // Prevent form auto-submit until we reveal fields
+  } else {
+    nextBtn.textContent = "Next";
+    nextBtn.type = "button";
+  }
+
+  progress.style.width = `${((index + 1) / (steps.length - 1)) * 100}%`;
+}
+
+function validateStep(index) {
+  let valid = true;
+  const inputs = steps[index].querySelectorAll(".input-field, textarea");
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      input.classList.add("error");
+      valid = false;
+    } else {
+      input.classList.remove("error");
+    }
+  });
+  return valid;
+}
+
+nextBtn.addEventListener("click", () => {
+  if (!validateStep(currentStep)) return;
+
+  if (currentStep < steps.length - 2) {
+    currentStep++;
+    showStep(currentStep);
+  } 
+  else {
+    // ✅ FINAL STEP: Reveal all steps before submitting so hidden fields are sent
+    steps.forEach(step => step.classList.add("hidden"));
+
+    document.getElementById("successStep").classList.remove("hidden");
+
+    nextBtn.type = "submit"; // Now convert to real submit
+    nextBtn.click(); // Trigger submit
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+});
+
+// ✅ Listen for submission to log all data (optional)
+document.getElementById("multiStepForm").addEventListener("submit", () => {
+  console.log("Submitting full form data...");
+});
+
+showStep(currentStep);
+
+
+
+// FAQ Dropdown
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+      const button = item.querySelector(".faq-question");
+      const answer = item.querySelector(".faq-answer");
+      const icon = item.querySelector(".icon");
+
+      button.addEventListener("click", () => {
+        const isOpen = !answer.classList.contains("hidden");
+
+        // Close all
+        faqItems.forEach(i => {
+          i.querySelector(".faq-answer").classList.add("hidden");
+          i.querySelector(".icon").textContent = "+";
+          i.querySelector(".faq-question").classList.remove("font-semibold");
+        });
+
+        // Toggle current
+        if (!isOpen) {
+          answer.classList.remove("hidden");
+          icon.textContent = "−";
+          button.classList.add("font-semibold");
+        } else {
+          answer.classList.add("hidden");
+          icon.textContent = "+";
+          button.classList.remove("font-semibold");
+        }
+      });
+    });
+
+    // Slider
+
+
+  
+    let swiper;
+
+    function initSwiper() {
+      const isDesktop = window.innerWidth >= 768;
+
+      if (swiper) swiper.destroy(true, true);
+
+      swiper = new Swiper('.mySlider', {
+        loop: true,
+        centeredSlides: true,
+        slidesPerView: 1,
+        direction: isDesktop ? 'vertical' : 'horizontal',
+        spaceBetween: 20,
+        grabCursor: true,
+      });
+    }
+
+    window.addEventListener('load', initSwiper);
+    window.addEventListener('resize', initSwiper);
+
+
+
+
+  //scrol to top
+  document.addEventListener('DOMContentLoaded', () => {
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  if (!scrollBtn) {
+    console.warn('scrollTopBtn not found in DOM.');
+    return;
+  }
+
+  const SHOW_AT = 200; // px scrolled before showing the button
+
+  // Update visibility on scroll
+  const updateVisibility = () => {
+    if (window.scrollY > SHOW_AT) {
+      // Tailwind approach: remove opacity-0/pointer-events-none and add opacity-100
+      scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+      scrollBtn.classList.add('opacity-100');
+      // Non-Tailwind fallback:
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+      scrollBtn.classList.remove('opacity-100');
+      scrollBtn.classList.remove('visible');
+    }
+  };
+
+  // initial check (in case page loads scrolled)
+  updateVisibility();
+
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+
+  // Click -> smooth scroll to top
+  scrollBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // small accessibility improvement: keyboard focus styles
+  scrollBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+});
+  </script>
+</body>
+</html>

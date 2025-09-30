@@ -1,0 +1,74 @@
+{% extends "admin/adminlayout.html" %}
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-10 bg-white">
+        <h4 class="text-center py-3"><b>All Applicants</b></h4>
+        {% if deet %}
+        <table class="table table-striped text-center">
+            {% include "users/_messages.html" %}
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Level</th>
+                    <th>School</th>
+                    <th>Phone Number</th>
+                    <th>Guardian Name</th>
+                    <th>Guardian/Parent's Occupation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user, information in deet %}
+                <tr>
+                    <td>{{ loop.index + ((pagination.page - 1) * pagination.per_page) }}</td>
+                    <td>
+                        {{ user.fullname }}
+                        {% if user.status == "new" %}
+                            <span class="badge bg-success ms-2">NEW</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.level }} Level</td>
+                    <td>{{ user.school }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.guardian }}</td>
+                    <td>{{ user.occupation }}</td>
+                    <td>
+                        <a href="{{ url_for('user_detail', user_id=user.id) }}" class="btn text-white bg-success text-sm">View More</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <nav aria-label="User pagination">
+            <ul class="pagination justify-content-center mt-4">
+                {% if pagination.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('all_users', page=pagination.prev_num) }}">Previous</a>
+                </li>
+                {% endif %}
+
+                {% for p in range(1, pagination.pages + 1) %}
+                <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('all_users', page=p) }}">{{ p }}</a>
+                </li>
+                {% endfor %}
+
+                {% if pagination.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('all_users', page=pagination.next_num) }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% else %}
+        <div class="text-center alert alert-info">NO APPLICANT FOUND</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
